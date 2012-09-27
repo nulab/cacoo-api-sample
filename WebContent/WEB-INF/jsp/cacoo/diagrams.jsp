@@ -35,7 +35,7 @@
 						<tr>
 							<td><a href="detail?diagramId=<%=d.get("diagramId")%>"><%=d.get("title")%></a></td>
 							<td>
-								<span class="action"><a href="<%=CacooUtils.editorLink((String)d.get("diagramId"), request)%>">EDIT</a></span>
+								<span class="action"><a href="editor?diagramId=<%=d.get("diagramId")%>">EDIT</a></span>
 								<span class="action"><a href="copyInit?diagramId=<%=d.get("diagramId")%>">COPY</a></span>
 								<span class="action"><a href="delete?diagramId=<%=d.get("diagramId")%>">DELETE</a></span>
 							</td>

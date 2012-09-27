@@ -38,6 +38,7 @@ public class CacooUtils {
 	public static final String SESSION_OAUTH_CONSUMER = "SESSION_OAUTH_CONSUMER";
 
 	// Cacoo URL
+	// FIXME If you have private enterprise package, change this URL to your system.
 	public static final String CACOO_URL = "https://cacoo.com/";
 	
 	private static final String ACCESS_TOKEN_URL = CACOO_URL+"oauth/access_token";
@@ -131,7 +132,7 @@ public class CacooUtils {
     /*
      * URL for diagram editor.
      */
-    public static String editorLink(String diagramId, HttpServletRequest req){
+    public static String editorLink(String diagramId, String editorToken, String automationToken, HttpServletRequest req){
     	// FIXME Please specify the url to the "callbackURL" when users close editor page.
     	JsonObject root = new JsonObject();
     	root.addProperty("callbackUrl", createRequestHost(req)+req.getContextPath()+"/cacoo/");
@@ -142,7 +143,14 @@ public class CacooUtils {
     	buttons.add(closeButton);
     	root.add("buttons",buttons);
     	try{
-    		return CACOO_URL+"diagrams/"+diagramId+"/edit?parameter="+URLEncoder.encode(root.toString(),"UTF-8");
+    		String url = CACOO_URL+"diagrams/"+diagramId+"/edit?parameter="+URLEncoder.encode(root.toString(),"UTF-8");
+    		if (editorToken != null && editorToken.length() > 0) {
+    			url += "&editorToken="+URLEncoder.encode(editorToken, "UTF-8");
+    		}
+    		if (automationToken != null && automationToken.length() > 0) {
+    			url += "&automationToken="+URLEncoder.encode(automationToken, "UTF-8");
+    		}
+    		return url;
     	}catch (Exception e) {
 			throw new RuntimeException(e);
 		}

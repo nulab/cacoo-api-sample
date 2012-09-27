@@ -56,6 +56,10 @@
 		<servlet-name>image</servlet-name>
 		<servlet-class>com.cacoo.apisample.cacoo.servlet.CacooImageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>editor</servlet-name>
+		<servlet-class>com.cacoo.apisample.cacoo.servlet.CacooEditorServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>welcome</servlet-name>
@@ -96,6 +100,10 @@
 	<servlet-mapping>
 		<servlet-name>image</servlet-name>
 		<url-pattern>/cacoo/image</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>editor</servlet-name>
+		<url-pattern>/cacoo/editor</url-pattern>
 	</servlet-mapping>
 	
 	<display-name>CacooApiSample</display-name>
